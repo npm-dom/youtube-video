@@ -9,7 +9,9 @@ youtubeVideo('player', 'sl1Q6W0UzGk', {
   height: 390,
   autoplay: true,
   controls: false,
-  onPaused: function () {}
+  onPlay: onPlay,
+  onEnd: onEnd,
+  onPause: onPause
 })
 ```
 
@@ -30,7 +32,9 @@ youtubeVideo('player', 'sl1Q6W0UzGk', {
   height: 390,
   autoplay: true,
   controls: false,
-  onPaused: function () {}
+  onPause: onPause,
+  onPlay: onPlay,
+  onEnd: onEnd
 }, onReady)
 
 function onReady (playback) {
