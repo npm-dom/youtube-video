@@ -1,0 +1,6 @@
+fox = bin 'fox'
+
+all 'test'
+
+task 'test', '*.js', ->
+  fox '-b -t 7000'

@@ -1,0 +1,26 @@
+{
+  "name": "youtube-video",
+  "version": "0.0.0",
+  "description": "Minimalistic API to play Youtube videos",
+  "main": "index.js",
+  "scripts": {
+    "test": "fox"
+  },
+  "dependencies": {
+    "load-script": "*",
+    "pubsub": "0.0.5"
+  },
+  "devDependencies": {
+    "fox": "*"
+  },
+  "keywords": [
+    "youtube",
+    "video"
+  ],
+  "repository": {
+    "url": "git@github.com:azer/youtube-video.git",
+    "type": "git"
+  },
+  "author": "Azer Koçulu <azer@kodfabrik.com>",
+  "license": "BSD"
+}
