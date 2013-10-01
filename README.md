@@ -15,6 +15,9 @@ youtubeVideo('player', 'sl1Q6W0UzGk', {
 })
 ```
 
+* Demo: http://requirebin.com/embed?gist=6774318
+* Source code: http://requirebin.com/?gist=6774318
+
 ## Install
 
 ```bash
