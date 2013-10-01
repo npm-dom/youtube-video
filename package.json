@@ -7,8 +7,7 @@
     "test": "fox"
   },
   "dependencies": {
-    "load-script": "*",
-    "pubsub": "0.0.5"
+    "require-sdk": "0.0.0"
   },
   "devDependencies": {
     "fox": "*"

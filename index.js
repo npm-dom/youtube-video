@@ -1,37 +1,21 @@
-var loadScript = require("load-script");
-var sdkLoadQueue = require('pubsub')();
-var isSDKLoading = false;
-var isSDKLoaded = false;
+var sdk = require('require-sdk')('https://www.youtube.com/iframe_api', 'YT');
+var loadTrigger = sdk.trigger();
 
-loadSDK();
+window.onYouTubeIframeAPIReady = function () {
+  loadTrigger();
+  delete window.onYouTubeIframeAPIReady;
+};
 
 module.exports = play;
 
-function loadSDK (callback) {
-  if (isSDKLoaded) {
-    return callback && callback();
-  }
-
-  callback && sdkLoadQueue(callback);
-
-  if (isSDKLoading) return;
-
-  isSDKLoading = true;
-
-  loadScript('https://www.youtube.com/iframe_api');
-
-  window.onYouTubeIframeAPIReady = function() {
-    isSDKLoaded = true;
-    sdkLoadQueue.publish();
-    delete window.onYouTubeIframeAPIReady;
-  }
-}
-
 function play (selector, id, options, callback) {
   var player;
+  var api;
 
-  loadSDK(function () {
-    player = new YT.Player(selector, {
+  sdk(function (error, youtube) {
+    api = youtube;
+
+    player = new api.Player(selector, {
       height: options.height,
       width: options.width,
       playerVars: {
@@ -52,15 +36,15 @@ function play (selector, id, options, callback) {
   }
 
   function onPlayerStateChange (event) {
-    if (event.data == YT.PlayerState.PLAYING && options.onPlay) {
+    if (event.data == api.PlayerState.PLAYING && options.onPlay) {
       options.onPlay(event.target);
     }
 
-    if (event.data == YT.PlayerState.ENDED && options.onEnd) {
+    if (event.data == api.PlayerState.ENDED && options.onEnd) {
       options.onEnd(event.target);
     }
 
-    if (event.data == YT.PlayerState.PAUSED && options.onPause) {
+    if (event.data == api.PlayerState.PAUSED && options.onPause) {
       options.onPause(event.target);
     }
   }
