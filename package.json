@@ -1,13 +1,15 @@
 {
   "name": "youtube-video",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Minimalistic API to play Youtube videos",
   "main": "index.js",
   "scripts": {
     "test": "fox"
   },
   "dependencies": {
-    "require-sdk": "0.0.0"
+    "require-sdk": "0.0.0",
+    "findall": "0.0.4",
+    "new-element": "0.0.1"
   },
   "devDependencies": {
     "fox": "*"

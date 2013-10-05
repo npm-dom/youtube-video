@@ -1,8 +1,12 @@
 var video = require('./');
 
-before(function (done) {
-  document.body.innerHTML = '<div id="player"></div>';
-  done();
+it('plays the video at given url', function(done){
+  var url = 'http://www.youtube.com/watch?v=tUsYb6Jkvt8&list=PLbpi6ZahtOH5bCaWwhAAn6eUBOtbHl5AV';
+
+  video(url, function (error, playback) {
+    expect(playback.getVideoUrl()).to.equal('https://www.youtube.com/watch?feature=player_embedded&v=tUsYb6Jkvt8');
+    done();
+  });
 });
 
 it('plays a youtube video', function(done){
@@ -10,14 +14,13 @@ it('plays a youtube video', function(done){
     width: 300,
     height: 180,
     controls: false,
-    loop: true,
     autoplay: true,
     onPlay: onPlay,
     onPause: onPause,
     onEnd: onStop
   };
 
-  video('player', 'rfh4Mhp-a6U', options);
+  video('rfh4Mhp-a6U', options);
 
   var paused;
 
@@ -37,6 +40,5 @@ it('plays a youtube video', function(done){
     expect(paused).to.be.true;
     done();
   }
-
 
 });

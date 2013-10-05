@@ -26,11 +26,22 @@ $ npm install youtube-video
 
 ## API
 
-### youtubeVideo(`DOM-id`, `video-id`, `options`, `onReady`)
+### youtubeVideo(`video-id` or `video-url`, `options`, `onReady`)
+
+Simply:
+
+```js
+youtubeVideo('https://www.youtube.com/watch?v=rfh4Mhp-a6U', function (error, playback) {
+  playback.playVideo()
+})
+```
+
+Or:
 
 ```js
 youtubeVideo = require('youtube-video')
-youtubeVideo('player', 'sl1Q6W0UzGk', {
+youtubeVideo('sl1Q6W0UzGk', {
+  elementId: 'player', // by default: youtube-video
   width: 640,
   height: 390,
   autoplay: true,
@@ -38,9 +49,5 @@ youtubeVideo('player', 'sl1Q6W0UzGk', {
   onPause: onPause,
   onPlay: onPlay,
   onEnd: onEnd
-}, onReady)
-
-function onReady (playback) {
-  playback.playVideo()
-}
+})
 ```
