@@ -4,7 +4,8 @@ Minimalistic API to play Youtube videos
 
 ```js
 youtubeVideo = require('youtube-video')
-youtubeVideo('player', 'sl1Q6W0UzGk', {
+youtubeVideo('sl1Q6W0UzGk', {
+  elementId: 'foobar',
   width: 640,
   height: 390,
   autoplay: true,
@@ -26,9 +27,7 @@ $ npm install youtube-video
 
 ## API
 
-### youtubeVideo(`video-id` or `video-url`, `options`, `onReady`)
-
-Simply:
+### youtubeVideo(`video-id` or `video-url`, `onReady`)
 
 ```js
 youtubeVideo('https://www.youtube.com/watch?v=rfh4Mhp-a6U', function (error, playback) {
@@ -36,7 +35,7 @@ youtubeVideo('https://www.youtube.com/watch?v=rfh4Mhp-a6U', function (error, pla
 })
 ```
 
-Or:
+### youtubeVideo(`video-id` or `video-url`, `options`, `onReady`)
 
 ```js
 youtubeVideo = require('youtube-video')
