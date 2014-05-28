@@ -43,7 +43,7 @@ function play (input, options, callback) {
   });
 
   function onPlayerReady (event) {
-    callback && callback(undefined, event.target);
+    callback && callback(event.target);
   }
 
   function onPlayerStateChange (event) {
