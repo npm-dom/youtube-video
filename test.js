@@ -1,15 +1,17 @@
 var video = require('./');
+var test = require('tape')
 
-it('plays the video at given url', function(done){
+test('plays the video at given url', function(t){
   var url = 'http://www.youtube.com/watch?v=tUsYb6Jkvt8&list=PLbpi6ZahtOH5bCaWwhAAn6eUBOtbHl5AV';
+  t.plan(1)
 
   video(url, function (error, playback) {
-    expect(playback.getVideoUrl()).to.equal('https://www.youtube.com/watch?feature=player_embedded&v=tUsYb6Jkvt8');
-    done();
+    t.equal(playback.getVideoUrl(), 'https://www.youtube.com/watch?v=tUsYb6Jkvt8');
+    t.end()
   });
 });
 
-it('plays a youtube video', function(done){
+test('plays a youtube video', function(t){
   var options = {
     width: 300,
     height: 180,
@@ -37,8 +39,8 @@ it('plays a youtube video', function(done){
   }
 
   function onStop () {
-    expect(paused).to.be.true;
-    done();
+    t.ok(paused)
+    t.end();
   }
 
 });

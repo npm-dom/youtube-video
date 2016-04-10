@@ -4,7 +4,7 @@
   "description": "Minimalistic API to play Youtube videos",
   "main": "index.js",
   "scripts": {
-    "test": "fox"
+    "test": "browserify test.js | tape-run --browser=firefox"
   },
   "dependencies": {
     "require-sdk": "0.0.0",
@@ -12,14 +12,16 @@
     "new-element": "0.0.1"
   },
   "devDependencies": {
-    "fox": "*"
+    "browserify": "13.0.0",
+    "tape": "4.5.1",
+    "tape-run": "2.1.3"
   },
   "keywords": [
     "youtube",
     "video"
   ],
   "repository": {
-    "url": "git@github.com:azer/youtube-video.git",
+    "url": "git@github.com:npm-dom/youtube-video.git",
     "type": "git"
   },
   "author": "Azer Koçulu <azer@kodfabrik.com>",
