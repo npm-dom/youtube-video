@@ -1,6 +1,6 @@
 {
   "name": "youtube-video",
-  "version": "0.0.3",
+  "version": "2.0.0",
   "description": "Minimalistic API to play Youtube videos",
   "main": "index.js",
   "scripts": {
