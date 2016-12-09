@@ -47,7 +47,10 @@ test('plays a youtube video', function(t){
 test('supports all playerVars parameters', function(t){
   var options = {
     autoplay: true,
+    cc_load_policy: true,
+    color: 'white',
     controls: false,
+    disablekb: true,
     loop: true,
   }
   t.plan(options.length);
@@ -56,8 +59,28 @@ test('supports all playerVars parameters', function(t){
     var src = document.getElementById('youtube-video').getAttribute('src');
 
     t.notEqual(-1, src.indexOf('autoplay=1'), 'autoplay parameter is supported');
+    t.notEqual(-1, src.indexOf('cc_load_policy=1'), 'cc_load_policy parameter is supported');
+    t.notEqual(-1, src.indexOf('color=white'), 'color parameter is supported');
     t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is supported');
+    t.notEqual(-1, src.indexOf('disablekb=1'), 'controls parameter is supported');
     t.notEqual(-1, src.indexOf('loop=1'), 'loop parameter is supported');
+    t.end()
+  });
+});
+
+test('supports search list type', function(t){
+  var options = {
+    list: 'cats',
+    listType: 'search',
+  }
+  t.plan(3);
+
+  video(null, options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('list=cats'), 'search terms are supported');
+    t.notEqual(-1, src.indexOf('listType=search'), 'search playlists are supported');
+    t.ok(playback.getPlaylist(), 'YouTube has cat videos');
     t.end()
   });
 });

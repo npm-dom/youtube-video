@@ -31,8 +31,13 @@ function play (input, options, callback) {
         width: options.width,
         playerVars: {
           autoplay: options.autoplay ? 1 : 0,
+          cc_load_policy: options.cc_load_policy ? 1 : 0,
+          color: getEnumeratedValue('color', options.color),
           controls: options.controls ? 1 : 0,
-          loop: options.loop ? 1 : 0
+          disablekb: options.disablekb ? 1 : 0,
+          list: options.list || null,
+          listType: getEnumeratedValue('listType', options.listType),
+          loop: options.loop ? 1 : 0,
         },
         videoId: pickID(input),
         events: {
@@ -68,6 +73,25 @@ function pickID (input) {
   var match = findall(input, /(?:\?|&)v=([^&]+)/);
 
   if (match) return match[0];
+}
+
+/**
+ * Check that a value is within the acceptable values for the given parameter.
+ * @type {string} param - The parameter name.
+ * @type {mixed}  val   - The value the user has provided.
+ * @return {mixed} The passed value if it's permitted or NULL otherwise.
+ */
+function getEnumeratedValue(param, val) {
+  var enumeratedValues = {
+    color: ['red', 'white'],
+    listType: ['search', 'user_uploads', 'playlist'],
+  };
+
+  if (!enumeratedValues.hasOwnProperty(param)) {
+    return val;
+  }
+
+  return -1 !== enumeratedValues[param].indexOf(val) ? val : null;
 }
 
 function defaultElementId () {
