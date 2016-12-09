@@ -42,5 +42,22 @@ test('plays a youtube video', function(t){
     t.ok(paused)
     t.end();
   }
+});
 
+test('supports all playerVars parameters', function(t){
+  var options = {
+    autoplay: true,
+    controls: false,
+    loop: true,
+  }
+  t.plan(options.length);
+
+  video('tUsYb6Jkvt8', options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('autoplay=1'), 'autoplay parameter is supported');
+    t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is supported');
+    t.notEqual(-1, src.indexOf('loop=1'), 'loop parameter is supported');
+    t.end()
+  });
 });
