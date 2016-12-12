@@ -136,3 +136,21 @@ test('supports user_uploads list type', function(t) {
     t.end()
   });
 });
+
+test('casts boolean playerVars as integers', function(t) {
+  var options = {
+    autoplay: true,
+    controls: false,
+    loop: true,
+  }
+  t.plan(options.length);
+
+  video('tUsYb6Jkvt8', options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('autoplay=1'), 'autoplay parameter is being cast as an integer');
+    t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is being cast as an integer');
+    t.notEqual(-1, src.indexOf('loop=1'), 'loop parameter is being cast as an integer');
+    t.end()
+  });
+});

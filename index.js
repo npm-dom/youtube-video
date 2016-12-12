@@ -32,6 +32,13 @@ function play (input, options, callback) {
     delete playerVars.width;
     delete playerVars.height;
 
+    // Automatically cast any boolean values as integers.
+    for (var i in playerVars) {
+      if ('boolean' === typeof playerVars[i]) {
+        playerVars[i] = playerVars[i] ? 1 : 0;
+      }
+    }
+
     player = new api.Player(
       elementId,
       {
