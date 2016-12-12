@@ -102,3 +102,37 @@ test('supports search list type', function(t) {
     t.end()
   });
 });
+
+test('supports playlist list type', function(t) {
+  var options = {
+    list: 'PLwlF1uffYtXo08VWYny-lVJ89niu4KIdm',
+    listType: 'playlist',
+  }
+  t.plan(3);
+
+  video(null, options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('list=PLwlF1uffYtXo08VWYny-lVJ89niu4KIdm'), 'playlist IDs are supported');
+    t.notEqual(-1, src.indexOf('listType=playlist'), 'playlists are supported');
+    t.ok(playback.getPlaylist(), 'YouTube has playlists of cute cat videos');
+    t.end()
+  });
+});
+
+test('supports user_uploads list type', function(t) {
+  var options = {
+    list: 'UC9egiwuJsQZ0Cy2to5fvSIQ',
+    listType: 'user_uploads',
+  }
+  t.plan(3);
+
+  video(null, options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('list=UC9egiwuJsQZ0Cy2to5fvSIQ'), 'user upload list IDs are supported');
+    t.notEqual(-1, src.indexOf('listType=user_uploads'), 'user upload playlists are supported');
+    t.ok(playback.getPlaylist(), 'YouTube has a whole channel of cat videos');
+    t.end()
+  });
+});
