@@ -44,14 +44,23 @@ test('plays a youtube video', function(t){
   }
 });
 
-test('supports all playerVars parameters', function(t){
+test('supports all playerVars parameters', function(t) {
   var options = {
     autoplay: 1,
     cc_load_policy: 1,
     color: 'white',
     controls: 0,
     disablekb: 1,
+    end: 1,
+    fs: 1,
+    hl: 'en',
+    iv_load_policy: 1,
     loop: 1,
+    modestbranding: 1,
+    playsinline: 1,
+    rel: 0,
+    showinfo: 0,
+    start: 5
   }
   t.plan(options.length);
 
@@ -62,13 +71,22 @@ test('supports all playerVars parameters', function(t){
     t.notEqual(-1, src.indexOf('cc_load_policy=1'), 'cc_load_policy parameter is supported');
     t.notEqual(-1, src.indexOf('color=white'), 'color parameter is supported');
     t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is supported');
-    t.notEqual(-1, src.indexOf('disablekb=1'), 'controls parameter is supported');
+    t.notEqual(-1, src.indexOf('disablekb=1'), 'disablekb parameter is supported');
+    t.notEqual(-1, src.indexOf('end=1'), 'end parameter is supported');
+    t.notEqual(-1, src.indexOf('fs=1'), 'fs parameter is supported');
+    t.notEqual(-1, src.indexOf('hl=en'), 'hl parameter is supported');
+    t.notEqual(-1, src.indexOf('iv_load_policy=1'), 'iv_load_policy parameter is supported');
     t.notEqual(-1, src.indexOf('loop=1'), 'loop parameter is supported');
+    t.notEqual(-1, src.indexOf('modestbranding=1'), 'modestbranding parameter is supported');
+    t.notEqual(-1, src.indexOf('playsinline=1'), 'playsinline parameter is supported');
+    t.notEqual(-1, src.indexOf('rel=0'), 'rel parameter is supported');
+    t.notEqual(-1, src.indexOf('showinfo=0'), 'showinfo parameter is supported');
+    t.notEqual(-1, src.indexOf('start=5'), 'start parameter is supported');
     t.end()
   });
 });
 
-test('supports search list type', function(t){
+test('supports search list type', function(t) {
   var options = {
     list: 'cats',
     listType: 'search',
