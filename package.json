@@ -7,9 +7,10 @@
     "test": "browserify test.js | tape-run --browser=firefox"
   },
   "dependencies": {
-    "require-sdk": "0.0.0",
+    "extend": "^3.0.0",
     "findall": "0.0.4",
-    "new-element": "0.0.1"
+    "new-element": "0.0.1",
+    "require-sdk": "0.0.0"
   },
   "devDependencies": {
     "browserify": "13.0.0",

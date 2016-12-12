@@ -46,12 +46,12 @@ test('plays a youtube video', function(t){
 
 test('supports all playerVars parameters', function(t){
   var options = {
-    autoplay: true,
-    cc_load_policy: true,
+    autoplay: 1,
+    cc_load_policy: 1,
     color: 'white',
-    controls: false,
-    disablekb: true,
-    loop: true,
+    controls: 0,
+    disablekb: 1,
+    loop: 1,
   }
   t.plan(options.length);
 

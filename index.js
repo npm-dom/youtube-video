@@ -1,3 +1,4 @@
+var extend = require('extend');
 var findall = require("findall");
 var newElement = require('new-element');
 var sdk = require('require-sdk')('https://www.youtube.com/iframe_api', 'YT');
@@ -22,23 +23,21 @@ function play (input, options, callback) {
   var elementId = options.selector ? options.elementId : defaultElementId();
 
   sdk(function (error, youtube) {
+    var playerVars = {};
+
     api = youtube;
+
+    // Assemble the playerVars object using the passed options (except top-level items).
+    extend(playerVars, options);
+    delete playerVars.width;
+    delete playerVars.height;
 
     player = new api.Player(
       elementId,
       {
         height: options.height,
         width: options.width,
-        playerVars: {
-          autoplay: options.autoplay ? 1 : 0,
-          cc_load_policy: options.cc_load_policy ? 1 : 0,
-          color: getEnumeratedValue('color', options.color),
-          controls: options.controls ? 1 : 0,
-          disablekb: options.disablekb ? 1 : 0,
-          list: options.list || null,
-          listType: getEnumeratedValue('listType', options.listType),
-          loop: options.loop ? 1 : 0,
-        },
+        playerVars: playerVars,
         videoId: pickID(input),
         events: {
           'onReady': onPlayerReady,
