@@ -143,7 +143,7 @@ test('casts boolean playerVars as integers', function(t) {
     controls: false,
     loop: true,
   }
-  t.plan(options.length);
+  t.plan(3);
 
   video('tUsYb6Jkvt8', options, function (error, playback) {
     var src = document.getElementById('youtube-video').getAttribute('src');
@@ -151,6 +151,25 @@ test('casts boolean playerVars as integers', function(t) {
     t.notEqual(-1, src.indexOf('autoplay=1'), 'autoplay parameter is being cast as an integer');
     t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is being cast as an integer');
     t.notEqual(-1, src.indexOf('loop=1'), 'loop parameter is being cast as an integer');
+    t.end()
+  });
+});
+
+test('accepts and merges a playerVars option', function(t) {
+  var options = {
+    autoplay: 1,
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+    },
+  }
+  t.plan(2);
+
+  video('tUsYb6Jkvt8', options, function (error, playback) {
+    var src = document.getElementById('youtube-video').getAttribute('src');
+
+    t.notEqual(-1, src.indexOf('autoplay=0'), 'autoplay is being overridden by playerVars.autoplay');
+    t.notEqual(-1, src.indexOf('controls=0'), 'controls parameter is being recognized');
     t.end()
   });
 });

@@ -28,9 +28,10 @@ function play (input, options, callback) {
     api = youtube;
 
     // Assemble the playerVars object using the passed options (except top-level items).
-    extend(playerVars, options);
+    extend(playerVars, options, options.playerVars);
     delete playerVars.width;
     delete playerVars.height;
+    delete playerVars.playerVars;
 
     // Automatically cast any boolean values as integers.
     for (var i in playerVars) {
