@@ -74,25 +74,6 @@ function pickID (input) {
   if (match) return match[0];
 }
 
-/**
- * Check that a value is within the acceptable values for the given parameter.
- * @type {string} param - The parameter name.
- * @type {mixed}  val   - The value the user has provided.
- * @return {mixed} The passed value if it's permitted or NULL otherwise.
- */
-function getEnumeratedValue(param, val) {
-  var enumeratedValues = {
-    color: ['red', 'white'],
-    listType: ['search', 'user_uploads', 'playlist'],
-  };
-
-  if (!enumeratedValues.hasOwnProperty(param)) {
-    return val;
-  }
-
-  return -1 !== enumeratedValues[param].indexOf(val) ? val : null;
-}
-
 function defaultElementId () {
   var id = 'youtube-video';
   var defaultEl = document.getElementById(id);
