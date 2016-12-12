@@ -44,3 +44,16 @@ test('plays a youtube video', function(t){
   }
 
 });
+
+test('respects the elementId argument', function(t) {
+  var player = document.createElement('div');
+  player.id = 'test-player';
+  document.body.appendChild(player);
+
+  t.plan(1);
+
+  video('tUsYb6Jkvt8', {elementId: 'test-player'}, function (error, playback) {
+    t.equal('test-player', playback.getIframe().id, 'elementId is being set');
+    t.end();
+  });
+});

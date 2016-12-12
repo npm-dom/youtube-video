@@ -19,7 +19,7 @@ function play (input, options, callback) {
     options = {};
   }
 
-  var elementId = options.selector ? options.elementId : defaultElementId();
+  var elementId = options.elementId || defaultElementId();
 
   sdk(function (error, youtube) {
     api = youtube;
