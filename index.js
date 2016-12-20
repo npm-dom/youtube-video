@@ -1,3 +1,4 @@
+var extend = require('extend');
 var findall = require("findall");
 var newElement = require('new-element');
 var sdk = require('require-sdk')('https://www.youtube.com/iframe_api', 'YT');
@@ -22,18 +23,29 @@ function play (input, options, callback) {
   var elementId = options.selector ? options.elementId : defaultElementId();
 
   sdk(function (error, youtube) {
+    var playerVars = {};
+
     api = youtube;
+
+    // Assemble the playerVars object using the passed options (except top-level items).
+    extend(playerVars, options, options.playerVars);
+    delete playerVars.width;
+    delete playerVars.height;
+    delete playerVars.playerVars;
+
+    // Automatically cast any boolean values as integers.
+    for (var i in playerVars) {
+      if ('boolean' === typeof playerVars[i]) {
+        playerVars[i] = playerVars[i] ? 1 : 0;
+      }
+    }
 
     player = new api.Player(
       elementId,
       {
         height: options.height,
         width: options.width,
-        playerVars: {
-          autoplay: options.autoplay ? 1 : 0,
-          controls: options.controls ? 1 : 0,
-          loop: options.loop ? 1 : 0
-        },
+        playerVars: playerVars,
         videoId: pickID(input),
         events: {
           'onReady': onPlayerReady,
