@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "extend": "^3.0.0",
-    "findall": "0.0.4",
-    "new-element": "0.0.1",
-    "require-sdk": "0.0.0"
+    "findall": "azer/findall",
+    "new-element": "azer/new-element",
+    "require-sdk": "azer/require-sdk"
   },
   "devDependencies": {
     "browserify": "13.0.0",
