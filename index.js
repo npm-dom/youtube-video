@@ -74,12 +74,23 @@ function play (input, options, callback) {
 
 }
 
+/**
+ * Parse the video ID out of a string.
+ *
+ * @param {string} input - The input string, which could be a URL or a video ID.
+ * @returns {string|null} Either the parsed video ID or NULL.
+ */
 function pickID (input) {
-  if (!/\./.test(input)) return input;
+  var videoId;
 
-  var match = findall(input, /(?:\?|&)v=([^&]+)/);
+  // Return early if there's no ".", as it's clearly not a URL.
+  if (!/\./.test(input)) {
+    return input;
+  }
 
-  if (match) return match[0];
+  videoId = /(?:\?|&)v=([^&]+)/.exec(input);
+
+  return videoId ? videoId[1] : null;
 }
 
 function defaultElementId () {
