@@ -11,6 +11,16 @@ test('plays the video at given url', function(t){
   });
 });
 
+test('plays the playlist at given url', function(t){
+  var url = 'https://www.youtube.com/playlist?list=PLwlF1uffYtXo08VWYny-lVJ89niu4KIdm';
+  t.plan(1)
+
+  video(url, function (error, playback) {
+    t.equal(playback.getPlaylistId(), 'PLwlF1uffYtXo08VWYny-lVJ89niu4KIdm');
+    t.end()
+  });
+});
+
 test('plays a youtube video', function(t){
   var options = {
     width: 300,
