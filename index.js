@@ -1,5 +1,4 @@
 var extend = require('extend');
-var findall = require("findall");
 var newElement = require('new-element');
 var sdk = require('require-sdk')('https://www.youtube.com/iframe_api', 'YT');
 var loadTrigger = sdk.trigger();
