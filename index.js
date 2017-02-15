@@ -11,7 +11,6 @@ window.onYouTubeIframeAPIReady = function () {
 module.exports = play;
 
 function play (input, options, callback) {
-  var player;
   var api;
 
   if (arguments.length == 2 && typeof options == 'function') {
@@ -51,7 +50,7 @@ function play (input, options, callback) {
       }
     }
 
-    player = new api.Player(
+    new api.Player(
       elementId,
       {
         height: options.height,
