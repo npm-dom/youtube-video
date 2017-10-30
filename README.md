@@ -13,7 +13,7 @@ youtubeVideo('sl1Q6W0UzGk', {
   onPlay: onPlay,
   onEnd: onEnd,
   onPause: onPause
-})
+}, (error, playback) => { playback.playVideo() })
 ```
 
 * Demo: http://requirebin.com/embed?gist=6774318
@@ -48,5 +48,5 @@ youtubeVideo('sl1Q6W0UzGk', {
   onPause: onPause,
   onPlay: onPlay,
   onEnd: onEnd
-})
+}, (error, playback) => { playback.playVideo() })
 ```
